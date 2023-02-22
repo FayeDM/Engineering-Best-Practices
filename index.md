@@ -146,6 +146,13 @@ updated: 6 Oct 2014
 				<li><a href="{{ site.baseurl }}/circleci/#something">Something</a></li>
 			</ul>
 		</div>
+
+		<div class="col">
+			<h3><a href="{{ site.baseurl }}/wordpress/#top">WordPress</a></h3>
+			<ul>
+				<li><a href="{{ site.baseurl }}/wordpress/#patches">Patches</a></li>
+			</ul>
+		</div>
 	</div>
 	
 </div>
