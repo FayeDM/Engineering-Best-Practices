@@ -34,18 +34,18 @@ updated: 6 Oct 2014
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/markup/#top">Markup</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/markup/#top">Markup</a></h3>
 			<ul>
 				<li><a href="{{ site.baseurl }}/markup/#philosophy">Philosophy</a></li>
 				<li><a href="{{ site.baseurl }}/markup/#accessibility">Accessibility</a></li>
 				<li><a href="{{ site.baseurl }}/markup/#structure">Structure</a></li>
 				<li><a href="{{ site.baseurl }}/markup/#media">Media</a></li>
 				<li><a href="{{ site.baseurl }}/markup/#svg">SVG</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/css/#top">CSS</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/css/#top">CSS</a></h3>
 
 			<ul>
 				<li><a href="{{ site.baseurl }}/css/#philosophy">Philosophy</a></li>
@@ -55,11 +55,11 @@ updated: 6 Oct 2014
 				<li><a href="{{ site.baseurl }}/css/#syntax-formatting">Syntax and Formatting</a></li>
 				<li><a href="{{ site.baseurl }}/css/#documentation">Documentation</a></li>
 				<li><a href="{{ site.baseurl }}/css/#frameworks">Frameworks</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/php/#top">PHP</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/php/#top">PHP</a></h3>
 			<ul>
 				<li><a href="{{ site.baseurl }}/php/#performance">Performance</a></li>
 				<li><a href="{{ site.baseurl }}/php/#design-patterns">Design Patterns</a></li>
@@ -67,7 +67,7 @@ updated: 6 Oct 2014
 				<li><a href="{{ site.baseurl }}/php/#code-style">Code Style & Documentation</a></li>
 				<li><a href="{{ site.baseurl }}/php/#unit-testing">Unit and Integration Testing</a></li>
 				<li><a href="{{ site.baseurl }}/php/#libraries">Libraries and Frameworks</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 	<div class="col">
@@ -79,7 +79,7 @@ updated: 6 Oct 2014
 	</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/javascript/#top">JavaScript</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/javascript/#top">JavaScript</a></h3>
 			<ul>
 				<li><a href="{{ site.baseurl }}/javascript/#performance">Performance</a></li>
 				<li><a href="{{ site.baseurl }}/javascript/#client-side-data">Client-side Data</a></li>
@@ -90,7 +90,7 @@ updated: 6 Oct 2014
 				</li>
 				<li><a href="{{ site.baseurl }}/javascript/#libraries">Libraries</a></li>
 				<li><a href="{{ site.baseurl }}/react/">React</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 		<div class="col">
@@ -111,24 +111,24 @@ updated: 6 Oct 2014
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/structure/#top">Project Design</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/structure/#top">Project Design</a></h3>
 			<ul>
 				<li><a href="{{ site.baseurl }}/structure/#file-organization">File Organization</a></li>
 				<li><a href="{{ site.baseurl }}/structure/#dependencies">Dependencies</a></li>
 				<li><a href="{{ site.baseurl }}/structure/#integrations">Third-Party Integrations</a></li>
 				<li><a href="{{ site.baseurl }}/structure/#modular-code">Modular Code</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/systems/#top">Systems</a></h3>
+			<!--h3><a href="{{ site.baseurl }}/systems/#top">Systems</a></h3>
 			<ul>
 				<li><a href="{{ site.baseurl }}/systems/#nginx">Nginx</a></li>
 				<li><a href="{{ site.baseurl }}/systems/#php-fpm">PHP-FPM</a></li>
 				<li><a href="{{ site.baseurl }}/systems/#mysql">MySQL</a></li>
 				<li><a href="{{ site.baseurl }}/systems/#memcached-and-redis">Memcached and Redis</a></li>
 				<li><a href="{{ site.baseurl }}/systems/#load-balancing">Load Balancing</a></li>
-			</ul>
+			</ul-->
 		</div>
 
 		<div class="col">
