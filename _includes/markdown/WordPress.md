@@ -1,7 +1,6 @@
 Documents about working with WordPress specifically will live on this page.
 
 ## Miscellaneous WordPress Notes
-* Local username/password on all projects should be `kadmin`/`kadmin`. Make it so when you see it otherwise.
 * Use `add_filter( 'admin_email_check_interval', '__return_false' );` to disable the admin email notification nag.
 
 ## Helpful Links
