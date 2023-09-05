@@ -2,6 +2,7 @@
   -webkit-background-size: cover;
   background-size: cover;
   text-align: center;
+	background-image: url("img/page-header.png");
 
   h1 {
     color: $default-light-color;
@@ -17,28 +18,4 @@
       padding: 6em $guaranteed-edge-standoff;
     }
   }
-}
-
-.header-introduction,
-.header-php,
-.header-javascript,
-.header-html,
-.header-css,
-.header-version-control,
-.header-markup,
-.header-tools,
-.header-migrations,
-.header-structure,
-.header-systems,
-.header-markup,
-.header-site-security,
-.header-design,
-.header-performance,
-.header-circleci,
-.header-wordpress,
-.header-accessibility,
-.header-seo,
-.header-security,
-.header-kanopipack {
-	background-image: url("img/page-header.png");
 }

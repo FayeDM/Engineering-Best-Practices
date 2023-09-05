@@ -38,4 +38,3 @@ bundle exec jekyll serve
 * Add the page as `filename.md` to the root folder.
 * In the root file, update the necessary variables such as page, title, etc. 
 * In the root file, modify the "capture" to point toward the markdown you created in step one.
-* Update `_includes/_sass/components/_template-header.scss` to include your new header with the other headers.
