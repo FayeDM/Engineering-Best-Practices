@@ -127,6 +127,13 @@ updated: 5 July 2023
 				<li>Coming Soon...</li>
 			</ul>
 		</div>
+
+		<div class="col">
+			<h3><a href="{{ site.baseurl }}/wordpress/#top">WordPress</a></h3>
+			<ul>
+				<li><a href="{{ site.baseurl }}/wordpress/#patches">Patches</a></li>
+			</ul>
+		</div>
 	</div>
 	
 </div>
