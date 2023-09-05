@@ -18,7 +18,7 @@ Kanopi’s preferred code editor is Visual Studio Code. Some developers use PHPS
 
 VS Code can be configured using any plugins desired, of course. Some extensions are strongly recommended:
 
-- [PHPCS](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) (note: while this exact extension is not required, projects should generally meet [phpcs standards](https://github.com/squizlabs/PHP_CodeSniffer) for their CMS of choice. In other words, there must be some way for code to achieve `phpcs` standards.) In general, projects should adhere to the standard [WP phpcs standards](https://github.com/WordPress/WordPress-Coding-Standards). Various support projects may have custom standards applied — check the README for any differences in a given project.
+- [PHPCS](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) (note: while this exact extension is not required, projects should generally meet [phpcs standards](https://github.com/squizlabs/PHP_CodeSniffer) for their CMS of choice. In other words, there must be some way for code to achieve `phpcs` standards.) In general, projects should adhere to the standard [WP phpcs standards](https://github.com/WordPress/WordPress-Coding-Standards). Various support projects may have custom standards applied — check the README for any differences in a given project.
 - [WordPress Snippets (for WordPress developers)](https://marketplace.visualstudio.com/items?itemName=wordpresstoolbox.wordpress-toolbox)
 - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 - [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug)
@@ -140,7 +140,7 @@ Some of the things that can be done with CI/CD include:
 
 CircleCI is a continuous integration (CI) tool. CircleCI facilitates code deployments to various environments and automated tooling workflows. Orbs are a set of automated and reusable tasks that can be implemented to help speed up different tasks within a Circle buil
 
-See [CircleCI](../Engineering-Best-Practices/circleci) for more information.
+See [CircleCI]({{ site.baseurl }}/circleci) for more information.
 
 <h3 id="automated-cms-updates" class="anchor-heading">Automated CMS Updates</h3>
 
