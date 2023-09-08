@@ -1,6 +1,6 @@
 ## Migrating a WordPress site to Kanopi Pack
 
-There are many steps involved in converting a legacy site or creating a new site, using (Kanopi Pack)[https://github.com/kanopi/kanopi-pack/]. Below, they are detailed in the steps recommended. This is meant to be a high-level overview with explanations. Considerations may be needed on a project-to-project basis.
+There are many steps involved in converting a legacy site or creating a new site, using [Kanopi Pack](https://github.com/kanopi/kanopi-pack/). Below, they are detailed in the steps recommended. This is meant to be a high-level overview with explanations. Considerations may be needed on a project-to-project basis.
 
 1. Composer
 2. Docksal
@@ -17,9 +17,8 @@ CircleCI and Tugboat changes are not referenced here, as that should be handled 
 * The example `composer.json` file below is for a Pantheon-based, fully composer build.
 * Remove the `johnpbloch/wordpress-core` package if you do not manage core via Composer. However, the rest is required for use of the Kanopi Pack Asset Loader, and the updated PHPCS standards.
 * If you do manage core via Composer, to add contributed plugins, run `composer require wpackagist-plugin/[plugin name]`. You can search for these on WPackagist, or simply by taking the slug from the official Plugin repo, and using that for the plugin name.
-* This sample uses PHPCS, you can read more about WordPress configuration of PHPCS in this [Cacher](https://snippets.cacher.io/snippet/6d1ec6cbc54c58922dda).
-* **IMPORTANT**: This is a blueprint which is not up to date. The listed versions of packages are being updated regularly, please check and update the version of PHP, WordPress Core, and Kanopi Pack Asset Loader based on the latest supported version available through NPM and Composer. For Kanopi Pack Asset Loader, head over to [the repo](https://github.com/kanopi/kanopi-pack-asset-loader/releases) the latest release number.
-* **NOTE**: If your project is a Pantheon-hosted site, the root of your WordPress site and hence its files are in the `web/` subfolder. Sites on WPEngine and many legacy support projects store WordPress in the root directory. Check configuration file paths to ensure they use the correct root path.
+* Please update the version of PHP, WordPress Core, and Kanopi Pack Asset Loader based on the latest supported version available. For Kanopi Pack Asset Loader, head over to [the repo](https://github.com/kanopi/kanopi-pack-asset-loader/releases) the latest release number.
+* **NOTE**: If your project is a Pantheon-hosted site, please make sure your WP files are in a `/web/` subfolder. This is not needed, nor encouraged, for other sites. Remove that reference from the sample below.
 
 ```
 {
@@ -183,7 +182,7 @@ You will need to create or update the following commands:
 * fin init-theme-assets
 * fin npm
 
-Please copy these from (this Cacher)[https://snippets.cacher.io/snippet/c0ba9321b584bfa1c756].
+Please copy these from [this Cacher](https://snippets.cacher.io/snippet/c0ba9321b584bfa1c756).
 
 ## WP Config
 
@@ -453,11 +452,19 @@ if ( class_exists( 'Kanopi\Assets\Registry\WordPress' ) ) {
 
 Finally, make sure to remove any code that still enqueues assets outside of this function.
 
+## CircleCI
+### config.yml
+If you've updated Node to 20+, you _may need_ to update the YAML file to reflect which Node version CircleCI should be using. This varies per project. If you're unsure, please speak to the TechOps team or your Tech Lead. For example:
+```
+- node/install:  
+  	node-version: "20.5"
+```
+
 ## You made it!
 
-Once you have completed the installation, you can run `fin development` and confirm that your assets are being compiled.
-
-Head over to your Docksal site and enjoy coding in a much faster way!
+Once you have completed the installation:
+- Run`fin development` during development to confirm that your assets are being compiled and watched. Head over to your Docksal site and enjoy coding in a much faster way!
+- Before deployment, run `fin production` to confirm your assets successfully compile for production.
 
 ## Troubleshooting
 
