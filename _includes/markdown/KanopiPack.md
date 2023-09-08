@@ -1,11 +1,6 @@
-## What is Kanopi Pack and Why are we using it?
-
-Kanopi Pack is tool set designed to consolidate and ease the management of CSS and JS assets used in a web application along with the supporting packages which build them. The project is available for installation via NPM and documentation of the Why, When, and How for the tool are published in the Github repository [Readme](https://github.com/kanopi/kanopi-pack#why-kanopi-pack).
-
-
 ## Migrating a WordPress site to Kanopi Pack
 
-There are many steps involved in converting a legacy site or creating a new site, using [Kanopi Pack](https://github.com/kanopi/kanopi-pack/). Below, they are detailed in the steps recommended. This is meant to be a high-level overview with explanations. Considerations may be needed on a project-to-project basis.
+There are many steps involved in converting a legacy site or creating a new site, using (Kanopi Pack)[https://github.com/kanopi/kanopi-pack/]. Below, they are detailed in the steps recommended. This is meant to be a high-level overview with explanations. Considerations may be needed on a project-to-project basis.
 
 1. Composer
 2. Docksal
@@ -23,12 +18,12 @@ CircleCI and Tugboat changes are not referenced here, as that should be handled 
 * Remove the `johnpbloch/wordpress-core` package if you do not manage core via Composer. However, the rest is required for use of the Kanopi Pack Asset Loader, and the updated PHPCS standards.
 * If you do manage core via Composer, to add contributed plugins, run `composer require wpackagist-plugin/[plugin name]`. You can search for these on WPackagist, or simply by taking the slug from the official Plugin repo, and using that for the plugin name.
 * This sample uses PHPCS, you can read more about WordPress configuration of PHPCS in this [Cacher](https://snippets.cacher.io/snippet/6d1ec6cbc54c58922dda).
-* **IMPORTANT**: This is a blueprint which is not up to date. The listed versions of packages are being updated regularly, please check and update the version of PHP, WordPress Core, and Kanopi Pack based on the latest supported version available through NPM and Composer.
+* **IMPORTANT**: This is a blueprint which is not up to date. The listed versions of packages are being updated regularly, please check and update the version of PHP, WordPress Core, and Kanopi Pack Asset Loader based on the latest supported version available through NPM and Composer. For Kanopi Pack Asset Loader, head over to [the repo](https://github.com/kanopi/kanopi-pack-asset-loader/releases) the latest release number.
 * **NOTE**: If your project is a Pantheon-hosted site, the root of your WordPress site and hence its files are in the `web/` subfolder. Sites on WPEngine and many legacy support projects store WordPress in the root directory. Check configuration file paths to ensure they use the correct root path.
 
 ```
 {
-    "name": "kanopi/name-of-project",
+    "name": "kanopi/name-of-repo",
     "description": "",
     "type": "project",
     "keywords": [],
@@ -45,9 +40,10 @@ CircleCI and Tugboat changes are not referenced here, as that should be handled 
         "kanopi/pack-asset-loader": "~1.0.2"
     },
     "require-dev": {
-        "automattic/vipwpcs": "~3.0.0",
-        "phpunit/phpunit": "~9.5.3",
+        "automattic/vipwpcs": "^2.3",
+        "phpunit/phpunit": "^9.5.3",
         "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.4.0"
     },
     "config": {
         "vendor-dir": "web/wp-content/mu-plugins/vendor",
@@ -74,12 +70,9 @@ CircleCI and Tugboat changes are not referenced here, as that should be handled 
         ],
         "code-sniff": [
             "Composer\\Config::disableProcessTimeout",
-            "web/wp-content/mu-plugins/vendor/bin/phpcs --standard=\"./.phpcs.xml.dist\" web/wp-content/"
+            "web/wp-content/mu-plugins/vendor/bin/phpcs --ignore=*/node_modules/*,,*/patterns/* --standard=WordPress-Extra --extensions=php web/wp-content/themes/custom/"
         ],
-        "code-fix": [
-            "Composer\\Config::disableProcessTimeout",
-					"web/wp-content/mu-plugins/vendor/bin/phpcbf --standard=\"./.phpcs.xml.dist\" web/wp-content/"
-				]
+        "code-fix": "web/wp-content/mu-plugins/vendor/bin/phpcbf --ignore=*/node_modules/*,,*/patterns/* --standard=WordPress-Extra --extensions=php web/wp-content/themes/custom/"
     },
     "extra": {
         "installer-paths": {
@@ -103,15 +96,17 @@ CircleCI and Tugboat changes are not referenced here, as that should be handled 
 
 Below is a Pantheon-specific example for your `docksal.env` file. For WPEngine sites, change the stack to `default`, and the DOCROOT to `.`
 
+*We do not have an image available for PHP 8.2 at the moment for Docksal. Please update the image when one becomes available.*
+
 ```
 DOCKSAL_STACK=pantheon
-CLI_IMAGE='docksal/cli:php8.2-3.5'
+CLI_IMAGE='docksal/cli:php8.0-3'
 
 # Docksal configuration.
 DOCROOT=web
 
 # Enable/disable xdebug
-# To override locally, add .docksal/docksal-local.env and set XDEBUG_ENABLED=1
+# To override locally, copy the two lines below into .docksal/docksal-local.env and adjust as necessary
 XDEBUG_ENABLED=0
 
 # WordPress settings
@@ -119,12 +114,10 @@ WP_ADMIN_USER=example
 WP_ADMIN_PASS=example
 WP_ADMIN_EMAIL=example_email_address
 
-# Change the following to match the project theme name
-WP_THEME_SLUG=custom/theme-name
-WP_THEME_RELATIVE_PATH=wp-content/themes/$WP_THEME_SLUG
-
-# Subdomain used to proxy the Kanopi Pack dev server assets 
+# If you'd like the installer to set up your theme, uncomment this line and add your theme folder.
+WP_THEME_SLUG=custom/ucsf
 WP_THEME_ASSETS_HOST_SUBDOMAIN=theme-assets
+WP_THEME_RELATIVE_PATH=wp-content/themes/$WP_THEME_SLUG
 
 # Local ssl certs folder
 CONFIG_CERTS="${CONFIG_CERTS:-$HOME/.docksal/certs}"
@@ -185,7 +178,6 @@ services:
 
 You will need to create or update the following commands:
 * fin init
-* fin init-site
 * fin development
 * fin production
 * fin init-theme-assets
@@ -195,7 +187,7 @@ Please copy these from (this Cacher)[https://snippets.cacher.io/snippet/c0ba9321
 
 ## WP Config
 
-For Kanopi Pack to be able to run its development server, you will need to add the following code to your `wp-config-local.php` (for Pantheon) or `wp-config.php` (for WPEngine and other projects):
+For Kanopi Pack to be able to run its development server, you will need to add the following code to your `wp-config-local.php`:
 
 ```
 /**
@@ -203,8 +195,6 @@ For Kanopi Pack to be able to run its development server, you will need to add t
  */
 define('KANOPI_DEVELOPMENT_ASSET_URL', 'https://' . getenv('WP_THEME_ASSETS_HOST_SUBDOMAIN') . '.' . getenv('VIRTUAL_HOST'));
 ```
-
-For Docksal configurations, keep a copy of this configuration file in `.docksal/etc/config` and copy it into the root of the WordPress site in the `init-site` command.
 
 ## MU-Plugins
 
@@ -285,22 +275,9 @@ You will need to have an `/assets/` folder, with the following two subfolders, `
 
 ```
 
-#### Calling assets
-
-To load an image in your SCSS or JavaScript file, use this path:
-`@/static/images/name-of-image.format`
-
-For a font:
-`@/static/fonts/name-of-font.format`
-
-If you are calling an asset directly in PHP, this will not work.
-
-In that case, use the path:
-`assets/src/static/` after the dynamic theme path.
-
 #### Config
 
-You will need to create a `kanopi-pack.js` file, along with a subfolder called `/tools/`, which will contain your StyleLint exclusions. Below is an example of a `kanopi-pack.js` configuration file and [here](https://github.com/kanopi/kanopi-pack/tree/main/examples). You may find the full explanation at the [Kanopi Pack repo](https://github.com/kanopi/kanopi-pack/blob/main/documentation/configuration.md).
+You will need to create a `kanopi-pack.js` file, along with a subfolder called `/tools/`, which will contain your StyleLint exclusions. Below is an example of a `kanopi-pack.js` configuration file. You may find the full explanation at the [Kanopi Pack repo](https://github.com/kanopi/kanopi-pack/blob/main/documentation/configuration.md).
 
 The entry points below correspond to your main files. For instance, if your theme styles live in `theme.scss`, you would create an entry point called `theme`, and then reference the path. The same would go for your Javascript. In the example below, the `legacy` entry point contains miscellaneous Javascript from legacy builds, and has been included in that subfolder. The `customizer` endpoint is for any Customizer or admin-related scripts.
 
@@ -310,7 +287,7 @@ At the bare minimum, you must provide an entry point for your theme. The naming 
 ```
 const {
 	VIRTUAL_HOST: sockHostDomain = "",
-  WP_THEME_ASSETS_HOST_SUBDOMAIN: sockHostSubdomain = ""
+    WP_THEME_ASSETS_HOST_SUBDOMAIN: sockHostSubdomain = ""
 } = process.env;
 
 module.exports = {
@@ -507,9 +484,3 @@ You may run `fin production` in your local environment in the future to debug a 
 The vendor script file will only be generated if you added specific libraries (like a slider) through `npm install` and imported those files in your Javascript. If you do not use any external vendor file, you do not need to enqueue the vendor script in Production. To do so, edit the code loading the asset to have it handle a condition based on the environment:
 
 `$loader->in_development_mode() ? $loader->register_vendor_script( 'vendor' ) : '';`
-
-**_The commands fin development and fin production work but I cannot see any styles in local_**
-
-Are you running on Kanopi Pack v2.3+? If so, you may be missing these lines in your asset loader:
-
-`$loader->in_development_mode() ? $loader->register_runtime_script( 'central' ) : '';`
