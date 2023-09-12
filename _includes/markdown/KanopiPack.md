@@ -1,6 +1,6 @@
 ## What is Kanopi Pack and Why are we using it?
 
-Kanopi Pack is tool set designed to consolidate and ease the management of CSS and JS assets used in a web application along with the supporting packages which build them. The project is available for installation via NPM and documentation of the Why, When, and How for the tool are published in the Github repository [Readmme](https://github.com/kanopi/kanopi-pack#why-kanopi-pack).
+Kanopi Pack is tool set designed to consolidate and ease the management of CSS and JS assets used in a web application along with the supporting packages which build them. The project is available for installation via NPM and documentation of the Why, When, and How for the tool are published in the Github repository [Readme](https://github.com/kanopi/kanopi-pack#why-kanopi-pack).
 
 
 ## Migrating a WordPress site to Kanopi Pack
@@ -494,3 +494,9 @@ You may run `fin production` in your local environment in the future to debug a 
 The vendor script file will only be generated if you added specific libraries (like a slider) through `npm install` and imported those files in your Javascript. If you do not use any external vendor file, you do not need to enqueue the vendor script in Production. To do so, edit the code loading the asset to have it handle a condition based on the environment:
 
 `$loader->in_development_mode() ? $loader->register_vendor_script( 'vendor' ) : '';`
+
+**_The commands fin development and fin production work but I cannot see any styles in local_**
+
+Are you running on Kanopi Pack v2.3+? If so, you may be missing these lines in your asset loader:
+
+`$loader->in_development_mode() ? $loader->register_runtime_script( 'central' ) : '';`
