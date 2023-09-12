@@ -285,6 +285,19 @@ You will need to have an `/assets/` folder, with the following two subfolders, `
 
 ```
 
+#### Calling assets
+
+To load an image in your SCSS or JavaScript file, use this path:
+`@/static/images/name-of-image.format`
+
+For a font:
+`@/static/fonts/name-of-font.format`
+
+If you are calling an asset directly in PHP, this will not work.
+
+In that case, use the path:
+`assets/src/static/` after the dynamic theme path.
+
 #### Config
 
 You will need to create a `kanopi-pack.js` file, along with a subfolder called `/tools/`, which will contain your StyleLint exclusions. Below is an example of a `kanopi-pack.js` configuration file and [here](https://github.com/kanopi/kanopi-pack/tree/main/examples). You may find the full explanation at the [Kanopi Pack repo](https://github.com/kanopi/kanopi-pack/blob/main/documentation/configuration.md).
