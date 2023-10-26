@@ -34,12 +34,10 @@ updated: 5 July 2023
 		</div>
 
 		<div class="col">
-			<h3><a href="{{ site.baseurl }}/systems/#top">System Architecture</a>{% include Util/status status="in-progress" %}</h3>
+			<h3><a href="{{ site.baseurl }}/systems/#top">Code Review</a>{% include Util/status status="in-progress" %}</h3>
 			<ul>
-				<li><a href="{{ site.baseurl }}/#">PHP</a></li>
-				<li><a href="{{ site.baseurl }}/#">Twig</a></li>
-				<li><a href="{{ site.baseurl }}/#">CSS</a></li>
-				<li><a href="{{ site.baseurl }}/#">Javascript</a></li>
+				<li><a href="{{ site.baseurl }}/code-review/#communication">Effective Communication</a></li>
+				<li><a href="{{ site.baseurl }}/code-review/#questions">Questions for Reviewer</a></li>
 			</ul>
 		</div>
 
