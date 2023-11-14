@@ -1,8 +1,36 @@
+## Code Development Standards
+
+### Development
+
+For initial development of any feature, approved for work and in the To Do column, start development in the following way:
+- Move the Teamwork ticket into the In Progress column.
+- Create a new feature branch based off of the latest commit to main (please ensure you git checkout main; git pull prior to checkout).
+  - This branch is committed and pushed daily to Github.
+- When starting work, open a draft PR for this feature, convert it to a full PR once it is done.
+- For reference, when going through PR, changes may be made on Github (upstream), check and pull new commits as needed.
+- When the PR is ready for review, move it to the Code Review column.
+
+### Preparing for Code Review
+For any template, block, or styling tasks which are ready to move to Code Review, please do the following:
+- Add a Patterns page to Prod with all relevant sections to review; add anchored headings to link to your feature as the page will get long.
+- Put links to the relevant section of the Patterns page and notes (or reference link to the Design Kit/Figma if possible) to describe where you pulled the styles for reference.
+- Write up instructions for testing.
+
 ## Code Review Standards
 
-This section is meant to support both engineers submitting a PR for code review and the code reviewer.
+- If there are only minor code structure issues, comment inline with granular commentary
+- Avoid broad scope feedback if possible
+If broad feedback is necessary, this can be spun into a backlog ticket for discussion
+- Provide inline comments and reviews with specific guidance on code changes/bugs
+- If there are minor code changes required, but everything else in the Pull Request is ready to be approved:
+  - note the requested changes and send it back to the Code Owner or use the Suggestion functionality in GitHub
+  - The PR can then be Approved
+  - The proposed changes should be noted in the Teamwork ticket and the ticket should be reassigned to the Code Owner for merge and deploy once the changes have been implemented
+  - Once Approved, the ticket can stay in the Code Review column and be assigned to the Code Owner, tagging them with a comment, notifying them of approval
 
 <h2 id="communication" class="anchor-heading">Effective Communication During Code Review {% include Util/link_anchor anchor="communication" %} {% include Util/top %}</h2>
+
+This section is meant to support both engineers submitting a PR for code review and the code reviewer.
 
 Effective communication during a code review is essential for ensuring that code quality is maintained and that the author and the reviewer benefit from the process. Here are some guidelines on how to communicate during a code review:
 

@@ -1,4 +1,4 @@
-Kanopi Studios uses Git to version control all project code and hosts distributed version control on Github. Alternative remote repository platforms may be used based on client project requirements, including BitBucket and GitLab. 
+Kanopi Studios uses Git to version control all project code and hosts distributed version control on Github. Alternative remote repository platforms may be used based on client project requirements, including BitBucket and GitLab.
 
 <h2 id="kanopi-structure-and-package-management" class="anchor-heading">Structure and Package Management</h2>
 
@@ -46,7 +46,35 @@ any large media files like videos
     <p>💡 Legacy projects may use alternative names for the primary branch, e.g., master or development. Check the project README or consult with the project Technical Lead to confirm the primary branch names for a project.</p>
 </aside>
 
-<h2 id="kanopi-vc-workflows" class="anchor-heading">Workflows</h2>
+
+## Assumptions and Definitions:
+### Task Responsibility
+When something is approved in Code Review, the person who was originally assigned the task is the Code Owner for the entire process until release and review.
+
+This person is responsible for:
+
+- Writing up testing/QA instructions internally, then again for Client Release
+- Testing the instructions while writing them
+	- QA testers are more effective when working on a polished component, instead of catching glaring mistakes
+- Comparing the feature against the approved design file, using it to clarify any questions
+- Reading the Client Requirements for further clarification
+-mKeeping any task discussion focused on the current tasks; avoid extending the discussion into broader scope items
+- Resolving any feedback related to the task in PR, and creating new Backlog tasks for any related, out of scope items
+<aside class="green">
+	<p>💡 Often, there are many tickets simultaneously in projects, and tagging may not always occur. As Point Person, follow up on tickets you wrote, even if they are not currently in your name. Use the board filters and watches; do not assume that, because something is not in your name, it is not your responsibility.</p>
+</aside>
+
+### Non-Feature-Complete Pull Requests
+For a Code Reviewer, if there are significant requirement / functionality problems with a Pull Request do the following:
+
+- stop reviewing
+- provide a brief PR comment with Request Changes; leave a concise description summarizing the missing feature/requirement
+- Assign the ticket in Teamwork back to the Code Owner, leave a brief note in Teamwork, then return the ticket status to In Progress
+- To try to keep the Code Review process efficient, do not spend time reviewing code quality on tasks which may require significant rewrites.
+
+
+
+<h2 id="kanopi-vc-workflows" class="anchor-heading">Development Workflows</h2>
 
 At Kanopi, we consider a standardized workflow a very important part of the development process. Utilizing an effective, consistent workflow ensures efficient collaboration and quicker project onboarding. For this reason, we use the following workflows company-wide for internal and client projects.
 
@@ -86,37 +114,37 @@ Common Project Management System abbreviations:
     - Review the project-level documentation and repository READMEs for project-specific workflows.
     - Contact the project Technical Lead if you have any questions on project branching requirements.
 - Regularly merge the remote main branch to your local main branch.
-    
+
     ```bash
     $ git checkout main
     $ git pull [or] git fetch && git merge
     ```
-    
+
 - Regularly delete your merged branches on both local and remote repositories.
     - The reviewer of the Pull Request on GitHub will delete the branch upon merging into the remote main branch. This can be configured to delete on merge automatically.  Please contact #helpdesk to configure if it is not on your project.
     - When a Pull Request is approved, you are safe to delete the branch on your local machine:
-    
+
     ```bash
     ## Delete a Local Branch in Git
     $ git branch -d name-of-local-feature-branch
-    
+
     ## Note: exercise caution when forcefully deleting a local branch with the following command. This will result in losing untracked work.
     ## -- delete --force a Local Branch in Git
     git branch -D name-of-local-feature-branch
     ```
-    
+
 #### Complex Feature Branching
 
-In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to test the feature as a cohesive unit and avoid merge conflicts when pushing to the staging and main branches, it is recommended to create a parent feature branch to act as a staging area. 
+In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to test the feature as a cohesive unit and avoid merge conflicts when pushing to the staging and main branches, it is recommended to create a parent feature branch to act as a staging area.
 
-1. Branch from the main branch to create the parent feature branch and then, as necessary, 
-2. Create child feature branches from the parent feature branch for distinct items of work. 
-3. When child branch tasks are complete, merge them back to the parent feature branch. 
+1. Branch from the main branch to create the parent feature branch and then, as necessary,
+2. Create child feature branches from the parent feature branch for distinct items of work.
+3. When child branch tasks are complete, merge them back to the parent feature branch.
 
 To pull work from main:
 
 1. Merge main into the parent feature branch, then
-2. Merge the parent feature branch into the individual child feature branches. 
+2. Merge the parent feature branch into the individual child feature branches.
 
 When all work has been merged back into the parent feature branch:
 
@@ -162,7 +190,7 @@ feat: Add an #Element.matches polyfill to support old IE
 ```
 
 ```bash
-$ git commit -m "fix: ensure post type is set before querying" 
+$ git commit -m "fix: ensure post type is set before querying"
 -m "Exits Relevanssi search results filter by type if the post type query variable is not available. Corrects Missing index notice."
 
 $ git log
@@ -172,7 +200,7 @@ Date:   Fri Jan 06 20:18:15 2023
 
 fix: ensure post type is set before querying
 
-Exits Relevanssi search results filter by type if the post type query variable is not available. 
+Exits Relevanssi search results filter by type if the post type query variable is not available.
 Corrects Missing index notice.
 ```
 #### Guidelines
@@ -191,7 +219,7 @@ Corrects Missing index notice.
     - **test**: Adding missing tests or correcting existing tests
     - **plugin**: Updating or adding a new plugin or module
     - **standards:** Formatting changes resulting from applying coding standards (e.g., phpcs, phpcbf)
-    
+
     (source: [Angular docs](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#type))
 <aside class="green">
 <p>💡 When applying coding standards (e.g., PHPcs), add formatting changes to a separate commit. This practice will help developers complete code reviews.</p>
@@ -229,16 +257,16 @@ $ git push origin name-of-local-feature-branch
 ```
 #### Creating a Pull Request (PR)
 
-PRs are created within GitHub and include a Kanopi description template by default. 
+PRs are created within GitHub and include a Kanopi description template by default.
 
-Please see [the section resources](#pr-resources) for instructions on creating a PR in GitHub. 
+Please see [the section resources](#pr-resources) for instructions on creating a PR in GitHub.
 
 The PR template includes the following content:
 
 1. Description
     1. User Story
-    2. A few sentences describing the overall goals of the pull request commits. What is the current behavior of the app? What is the updated/expected behavior with this PR? Include your acceptance criteria; this information can often be copy/pasted from the task. 
-2. Affected URL(s): a link to the relevant multidev or test site. The URLs provided should be in a state that allows verification for both PR Review and QA. 
+    2. A few sentences describing the overall goals of the pull request commits. What is the current behavior of the app? What is the updated/expected behavior with this PR? Include your acceptance criteria; this information can often be copy/pasted from the task.
+2. Affected URL(s): a link to the relevant multidev or test site. The URLs provided should be in a state that allows verification for both PR Review and QA.
 3. Related Tickets: a link to the related Teamwork task.
 4. Steps to Validate: a list of steps to validate work.
 5. Deployment Notes: information relevant to deploying the changes in the PR.
@@ -273,7 +301,7 @@ A PR is always required for code changes merged to the main branch. The PR revie
 In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a feature is complete to merge main into it. Merging should be done as non-fast-forwards (`--no-ff`) to ensure a record of the merge exists.
 #### Merging Strategy
 
-Kanopi implements a “**squash** and **merge”** strategy for incorporating changes from a pull request. 
+Kanopi implements a “**squash** and **merge”** strategy for incorporating changes from a pull request.
 
 #### Guidelines
 
@@ -299,12 +327,17 @@ Deployments to staging and production environments are triggered when Git tags a
 - Semantic Versioning
 - `{ environment }-date`, e.g., production-20221203
 
-Git tags can be applied and published via the command line or through a project’s GitHub repository. The project GitHub Release interface is the recommended approach to managing and publishing Git tags. 
+Git tags can be applied and published via the command line or through a project’s GitHub repository. The project GitHub Release interface is the recommended approach to managing and publishing Git tags.
 
 #### Guidelines:
 
 - Include a descriptive title for the tag release, e.g., WP Core 6.1.
 - Consider using the Generated Release Notes. These notes list the feature branches and PRs included in the release. If the Generated Release Notes are not used, please provide links to the Teamwork tasks and PRs for all features included in the release.
+- Set up an example post or configure the feature in Production
+- Write up instructions for testing
+  - Ensure all URLs are against the Production environment, this is where the client will test
+  - Place the instructions as a Teamwork comment on the task, with Production Test URLs and any Design Kit/Figma references.
+- Move the ticket to the In Review column, make sure it is tagged to the QA person
 
 #### Resources:
 
@@ -315,11 +348,11 @@ Git tags can be applied and published via the command line or through a project�
 
 #### Deleting Branches
 
-A feature branch workflow will inevitably build up a large list of branches in the repository. To prevent many unused branches from living in the repository, we'll delete feature branches once they are merged into the main branch. 
+A feature branch workflow will inevitably build up a large list of branches in the repository. To prevent many unused branches from living in the repository, we'll delete feature branches once they are merged into the main branch.
 
-When projects use non-ff merges to main, we can safely delete feature branches because all commits are preserved and can be located from the merge commit. Project repositories should be configured to delete branches when a Pull Request is merged automatically. 
+When projects use non-ff merges to main, we can safely delete feature branches because all commits are preserved and can be located from the merge commit. Project repositories should be configured to delete branches when a Pull Request is merged automatically.
 
-To remove outdated branches on your local machine that are no longer in use or available in the remote repository, consider using `git fetch --prune`  . 
+To remove outdated branches on your local machine that are no longer in use or available in the remote repository, consider using `git fetch --prune`  .
 
 #### Resources:
 

@@ -1,7 +1,7 @@
 ---
 page: code-review
-title: Code Review
-nav: Code Review
+title: Code Development and Review
+nav: Code Development and Review
 weight: 6
 layout: default
 updated: 26 Sep 2023
