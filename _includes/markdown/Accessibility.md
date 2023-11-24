@@ -321,8 +321,6 @@ The menu is constructed as designed with no accommodations for accessibility bey
 *   Prohibits assistive technology from reaching mega menu content.
 *   Dropdowns are activated on hover on desktop, but require dual purpose use on mobile (tap must activate the link, but tap must also activate the dropdown), unless the menu is reduced to simple mobile design.
 *   Creates the possibility for a simple mobile menu design without displaying any dropdowns, as the extra content will be present on the landing pages.
-*   Libraries:
-    *   [Deque](https://dequeuniversity.com/library/aria/menus/megamenu) (does not address mobile menu)
 
 Example:
 ```
