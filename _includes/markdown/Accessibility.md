@@ -70,6 +70,7 @@ While the official document is comprehensive and well documented, the [quick ref
 *   All site functionality must be operable through a keyboard interface. 
     *   Menu buttons, close buttons, links, sliders, tabs, accordions, etc.
     *   [More About Keyboard Testing](#keyboard)
+    *   [More About Mega Menus](#megamenus)
     *   [2.1.1 Keyboard - Level A](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_overview&showtechniques=111%2C131%2C132%2C332#keyboard)
 *   Do not trap a user via keyboard.
     *   [More About Keyboard Testing](#keyboard)
@@ -299,6 +300,138 @@ Everything in the 4 point rule set has to do with a device’s ability to unders
 *   When states, properties, or values are changed, is that change made available to user agents?
 *   Are status messages presented to the user without requiring focus?
 
+<h2 id="megamenus" class="anchor-heading">Mega Menus {% include Util/link_anchor anchor="megamenus" %} {% include Util/top %}</h2>
+
+
+### What is a Mega Menu?
+
+A mega menu is any menu implementation that includes more than one level. This means all dropdown menus are considered mega menus, even if they are simplistic in design and content.
+
+There are 2 methods for creating accessible mega menus.
+
+### Method 1: Top Level Links
+
+The menu is constructed as designed with no accommodations for accessibility beyond the use of the top level links, and all sub menu items are hidden from screen readers. Each top level link must then go to a landing page that includes all of the additional links and content that would have been found in that top level's dropdown.
+
+*   Easier to implement.
+*   Great option for innovative menu ideas.
+*   Requires top link landing pages. This is not optional.
+*   Landing pages must be designed with all appropriate dropdown content included.
+*   Sub menus within sub menus will follow the same rules.
+*   Prohibits assistive technology from reaching mega menu content.
+*   Dropdowns are activated on hover on desktop, but require dual purpose use on mobile (tap must activate the link, but tap must also activate the dropdown), unless the menu is reduced to simple mobile design.
+*   Creates the possibility for a simple mobile menu design without displaying any dropdowns, as the extra content will be present on the landing pages.
+
+Example:
+```
+*   Home
+*   About Us
+    *   Our Company
+    *   Careers
+*   Blog
+    *   News
+    *   Events
+    *   Resources
+*   Contact Us
+```
+In the above example, both About Us and Blog needs to take the user to a landing page when clicked. They cannot be left as empty links. Users with assistive technology will not perceive the additional links under those items. When arriving at the About Us page, the user will find links directing them to Our Company and Careers within the main content. Likewise, when they arrive at the Blog page, they will find links directing them to News, Events, and Resources.
+
+The primary drawback is that it will take assistive tech some time to find the content users are looking for. Someone looking for "careers" would not necessarily find it right away if they did not already know to look under About Us. Any important links as such could be represented in the footer menu for easier access.
+
+### Method 2: Toggled Dropdowns
+
+The menu consists of top level items that have no associated pages, unless they are stand alone and have no sub menu (such as Home). When any user places their mouse or focus on a top level link, they will see a hover/focus effect but it will not activate the dropdown until the item is clicked, or a keyboard arrow is used.
+
+*   Higher level of effort.
+*   Less room for menu innovation.
+*   Top level links with dropdowns CANNOT link to a page. This is not optional.
+*   Dropdowns activated on click, not hover.
+*   Content within the dropdowns must still be accessible.
+*   Allows assistive technology to access mega menu content.
+*   Sub menus within sub menus will follow the same rules.
+*   Ideal for complex mobile menus, as the tap functionality will properly mirror the desktop toggle functionality.
+*   Libraries:
+    *   Bootstrap
+    *   \[Adobe\] [Accessible Menu](https://adobe-accessibility.github.io/Accessible-Mega-Menu/)
+    *   [Deque](https://dequeuniversity.com/library/aria/navigation) - Hierarchical with Expand / Collapse
+
+Example:
+```
+*   Home
+*   About Us
+    *   Our Company
+    *   Careers
+*   Blog
+    *   News
+    *   Events
+    *   Resources
+*   Contact Us
+```
+In the above example, both About Us and Blog pages do not actually exist. Users who click on About Us will then trigger the dropdown where they can select Our Company or Careers. Likewise, there is no Blog page, but clicking blog opens the dropdown and permits the users to perceive News, Events, and Resources as options. If pages for About Us and Blog are required, they must exist as sub menu items under the top level. The top level link will never have any purpose other than to open the dropdown. Home and Contact Us will still go to pages as they do not have dropdowns.
+
+### Method 3: Dual Purpose Top Level Links
+
+This menu has top level links that link out to landing pages, as well as toggle the to sub menu. This menu style is inaccessible \*\*.
+
+*   Highest level of effort.
+*   Meets the need for a mix of top level links, empty links, and dropdowns.
+*   Does not meet WCAG guidelines \*\*.
+*   Libraries to do this typically do not exist or are not technically accessible, therefore requires time consuming custom coded solutions.
+
+Example:
+```
+*   Home \*
+*   About Us 
+    *   Our Company \*
+    *   Careers \*
+*   Blog \*
+    *   News \*
+    *   Events \*
+    *   Resources \*
+*   Contact Us \*
+```
+In the example above, the linked items are stared. It is not consistent as the top level About Us does not have a page, but the top level Blog does. This is what creates the need for dual purpose links, since Blog links out, but About Us does not. If they were aligned, we would be able to use another method, provided this was accounted for by design and strategy.
+
+\*\* For all intents and purposes, consider this menu style non compliant. It is a nightmare due to the amount of work that is required, and in the end it will be **technically** accessible, but ONLY **technically**. The actual user experience is extremely frustrating, and is by no means a service for those using keyboards and screen readers. If top level links are required, please see if Method 1 is a possibility before pursuing this concept.
+
+### Budgeting:
+
+*   WordPress 
+    *   Does not allow for additional content apart from links to be added into the menu. 
+    *   We have to custom build this into the site using ACF fields and then either edit/create a walker, or make a function to inject that content into the output. 
+    *   Injected content does not work with the Bootstrap library in WordPress.
+    *   Mega Menus containing content apart from basic sub menu links should be considered a high level of effort. 
+        *   Headings
+        *   Columns
+        *   Featured Content
+        *   CTAs
+
+*   Drupal
+    *   Likewise, Drupal does not allow for additional content out of the box. There are a number of modules that can be utilized to include additional content similarly to the ACF fields, then needs to be custom added to the output. 
+    *   Mega Menus containing content apart from basic sub menu links should be considered a high level of effort. 
+        *   Headings
+        *   Columns
+        *   Featured Content
+        *   CTAs
+
+##### General Design / Strategy Complexities to consider
+
+ *   Consider the sub menu footprint if the toggling link is all the way to the left, or all the way to the right. Centering sub menus with their trigger is typically not possible when hugging the left or right sides of the container. Provide examples to the developer so that they can see what happens when the furthest dropdown is activated.
+ *   Consider the sub menu footprint for tablet views. Menus that are too wide or too "full" will spill off the sides or bottom of the page on tablet views (or small laptops), causing the developer to switch to the mobile view almost immediately after large desktop. Users with small screens or who surf on their tablets may not see the desktop version at all.
+ *   Use Method 1 with a simple mobile menu if the client's menu build budget is less than 15 hours.
+ *   Mobile menu designs that include mega menu content (sub menus) needs to demonstrate each tier.
+	  *   Dual purpose links require two target areas, one to go to the links and one to toggle the dropdown. Tap targets must be at least 48px by 48px.
+*   Dropdowns that include combinations of horizontal and vertical submenu structures are nearly impossible to navigate reliably without sight, because the orientation of the focused menu is impossible to predict without additional context. Users would need supplemental text to explain when to use the left and right arrows vs up and down.
+*   Users navigating via screen readers may not visually see dropdowns within dropdowns and may spend a large amount of time listening to links read aloud before finding the section they want. When attempting to revisit that page, they will need to repeat this process.
+*   Unless the user flow of the site indicates the need for a mega menu, it could be more valuable to implement a less complex navigation system and let the users find the ‘next’ link via the natural content flow of the site. 
+*   Mega menus are complex and take considerable time to build. Ensure the development budget is sufficient for the desired outcome.
+
+##### General Development Complexities to consider
+
+*   Zoom 200% will usually reflect the mobile menu. This means the mobile menu must be 100% keyboard accessible, as desktop users who utilize zoom may require keyboard inputs.
+*   Duplicate menus - using a mobile menu and a desktop menu often creates duplicate ids, duplicate menus read aloud via screen readers, or duplicate content entry for clients.
+*   The aria required to make mega menus accessible can override native functions and introduce regular content (such as headings, descriptions, images) as navigation. Users navigating via screen readers may run into confusion when an identified navigation list suddenly becomes content instead of links
+*   Hovers / click interactions for desktop can become double clicks for touch screens when miscoded.
 
 <h2 id="images" class="anchor-heading">Images {% include Util/link_anchor anchor="images" %} {% include Util/top %}</h2>
 

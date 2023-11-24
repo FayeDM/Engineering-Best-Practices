@@ -48,6 +48,7 @@ updated: 5 July 2023
 				<li><a href="{{ site.baseurl }}/accessibility/#testing-accessibility">Testing Accessibility</a></li>
 				<li><a href="{{ site.baseurl }}/accessibility/#a11y-teaching-learning">A11y Teaching & Learning</a></li>
 				<li><a href="{{ site.baseurl }}/accessibility/#wcag">WCAG Guideline Quick Reference</a></li>
+   			 	<li><a href="{{ site.baseurl }}/accessibility/#megamenus">Mega Menus</a></li>
 				<li><a href="{{ site.baseurl }}/accessibility/#images">Images</a></li>
 				<li><a href="{{ site.baseurl }}/accessibility/#landmarks">Landmarks</a></li>
 				<li><a href="{{ site.baseurl }}/accessibility/#videos">Videos</a></li>
