@@ -945,7 +945,23 @@ Items that would count as motion animation:
 
 <h2 id="keyboard" class="anchor-heading">Keyboard {% include Util/link_anchor anchor="keyboard" %} {% include Util/top %}</h2>
  
- Coming Soon...
+A website should be completely operable by keyboard, without the use of a mouse. Users must also be able to visually see what they are focused on so that they can tell what they are interacting with.
+
+### Focus
+
+By default, all browsers have focus states applied to interactive elements (links, buttons, inputs, etc). Do not disable these unless you plan to replace them. One of the simplest ways to ensure interactive elements have focus states is to add `:focus` to your `:hover` styles. Additionally you will want a fallback, such as allowing the browser to handle focus states, or to manage them yourself.
+
+```
+:focus {
+	outline: thin dashed inherit;
+}
+```
+
+The above will give all items that can receive a focus a thin dashed line in the same color as that element's `color`. Most of the time, this is sufficient. Box shadows are also popular as one can create a "glow" around the focused item. And don't forget the `outline-offset` property as that can be useful for designing an easy to spot focus.
+
+Focus should only be applied to interactive elements. If the keyboard can't reach an interactive element, such as tabs which are usually built with generic elements like divs, you can make them "focusable" by giving them the attribute `tabindex=0`. You can also use tabindex to prevent focus, or change the focus order, though these use cases are typicaly uncommon.
+
+When testing your work, you should be able to `tab` down the page (or back up with `shift + tab`) and reach all interactive items. You should not find yourself tabbing through offscreen content like mobile menus or dropdowns until those elements have been triggered. Additionally the page should flow from top to bottom. This will naturally happen if your DOM order is the same as the page presentation. When switching item placement via styles, be sure you are not creating confusion. Users should not be taken down to the bottom of the page because a button in the header was absolute positioned in the footer.
 
 
 <h2 id="audit" class="anchor-heading">Accessibility Auditing Tools
