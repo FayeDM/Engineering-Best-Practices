@@ -963,6 +963,16 @@ Focus should only be applied to interactive elements. If the keyboard can't reac
 
 When testing your work, you should be able to `tab` down the page (or back up with `shift + tab`) and reach all interactive items. You should not find yourself tabbing through offscreen content like mobile menus or dropdowns until those elements have been triggered. Additionally the page should flow from top to bottom. This will naturally happen if your DOM order is the same as the page presentation. When switching item placement via styles, be sure you are not creating confusion. Users should not be taken down to the bottom of the page because a button in the header was absolute positioned in the footer.
 
+### Keyboard Interactions
+
+Keyboard users are going to be using `tab` and `shift + tab` to move up and down the interactive elements on the page. They can use the arrow keys to scroll, but when they enter an "application" (such as a menu or accordion or dialog box or set of tabs), the arrow keys no longer scroll the page as they are often used to control interactions. For example, using the arrow keys could take the user sideways through a series of tab controls. Or the down arrow could trigger a dropdown, or move through an accordion. The other vital keys are `spacebar` and `enter` which usually activate the interactive element. Lastly, `esc` is typically used to escape an application.
+
+Developers who don't regularly use keyboards can find it awkward and clunky to test these interactions, and often question whether or not they've got the right interaction. The goal first and formost is to ensure everything is reachable and usable by keyboard. Additional interactions may be optional and/or prefered.
+
+[WAI W3C Patterns](https://www.w3.org/WAI/ARIA/apg/patterns/) has a number of components with preferred keyboard interactions defined inside of them. Following those patterns, you should be able to see what is expected and what is optional. 
+
+Lastly, provided you use semantic HTML, a large number of keyboard interactions will be completed for you. `<button>` for example has a number of default keyboard interactions. However if you were to apply `role=button` to a `div`, those keyboard interactions would not be there - all you've done is said "this div is a button", you have not actually given it the behaviour of a button. That's why using the semantic element is so important.
+
 
 <h2 id="audit" class="anchor-heading">Accessibility Auditing Tools
  {% include Util/link_anchor anchor="audit" %} {% include Util/top %}</h2>
