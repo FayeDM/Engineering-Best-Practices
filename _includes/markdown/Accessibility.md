@@ -316,6 +316,7 @@ The menu is constructed as designed with no accommodations for accessibility bey
 *   Easier to implement.
 *   Great option for innovative menu ideas.
 *   Requires top link landing pages. This is not optional.
+*   Dropdown indicators would not be appropriate with this method.
 *   Landing pages must be designed with all appropriate dropdown content included.
 *   Sub menus within sub menus will follow the same rules.
 *   Prohibits assistive technology from reaching mega menu content.
@@ -325,10 +326,10 @@ The menu is constructed as designed with no accommodations for accessibility bey
 Example:
 ```
 *   Home
-*   About Us
+*   About Us <-- must go to a page
     *   Our Company
     *   Careers
-*   Blog
+*   Blog <-- must go to a page
     *   News
     *   Events
     *   Resources
@@ -358,10 +359,10 @@ The menu consists of top level items that have no associated pages, unless they 
 Example:
 ```
 *   Home
-*   About Us
+*   About Us <-- must not go to a page
     *   Our Company
     *   Careers
-*   Blog
+*   Blog <-- must not go to a page
     *   News
     *   Events
     *   Resources
@@ -380,17 +381,17 @@ This menu has top level links that link out to landing pages, as well as toggle 
 
 Example:
 ```
-*   Home \*
-*   About Us 
-    *   Our Company \*
-    *   Careers \*
-*   Blog \*
-    *   News \*
-    *   Events \*
-    *   Resources \*
-*   Contact Us \*
+*   Home 
+*   About Us <-- does not go to a page
+    *   Our Company 
+    *   Careers 
+*   Blog  <-- does go to a page
+    *   News 
+    *   Events 
+    *   Resources 
+*   Contact Us 
 ```
-In the example above, the linked items are stared. It is not consistent as the top level About Us does not have a page, but the top level Blog does. This is what creates the need for dual purpose links, since Blog links out, but About Us does not. If they were aligned, we would be able to use another method, provided this was accounted for by design and strategy.
+The example above isn't consistent as the top level About Us does not have a page, but the top level Blog does. This is what creates the need for dual purpose links, since Blog links out, but About Us does not. If they were aligned, we would be able to use another method, provided this was accounted for by design and strategy.
 
 \*\* For all intents and purposes, consider this menu style non compliant. It is a nightmare due to the amount of work that is required, and in the end it will be **technically** accessible, but ONLY **technically**. The actual user experience is extremely frustrating, and is by no means a service for those using keyboards and screen readers. If top level links are required, please see if Method 1 is a possibility before pursuing this concept.
 
