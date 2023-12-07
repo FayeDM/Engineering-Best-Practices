@@ -415,7 +415,7 @@ The example above isn't consistent as the top level About Us does not have a pag
         *   Featured Content
         *   CTAs
 
-##### General Design / Strategy Complexities to consider
+#### General Design / Strategy Complexities to consider
 
  *   Consider the sub menu footprint if the toggling link is all the way to the left, or all the way to the right. Centering sub menus with their trigger is typically not possible when hugging the left or right sides of the container. Provide examples to the developer so that they can see what happens when the furthest dropdown is activated.
  *   Consider the sub menu footprint for tablet views. Menus that are too wide or too "full" will spill off the sides or bottom of the page on tablet views (or small laptops), causing the developer to switch to the mobile view almost immediately after large desktop. Users with small screens or who surf on their tablets may not see the desktop version at all.
@@ -427,7 +427,7 @@ The example above isn't consistent as the top level About Us does not have a pag
 *   Unless the user flow of the site indicates the need for a mega menu, it could be more valuable to implement a less complex navigation system and let the users find the ‘next’ link via the natural content flow of the site. 
 *   Mega menus are complex and take considerable time to build. Ensure the development budget is sufficient for the desired outcome.
 
-##### General Development Complexities to consider
+#### General Development Complexities to consider
 
 *   Zoom 200% will usually reflect the mobile menu. This means the mobile menu must be 100% keyboard accessible, as desktop users who utilize zoom may require keyboard inputs.
 *   Duplicate menus - using a mobile menu and a desktop menu often creates duplicate ids, duplicate menus read aloud via screen readers, or duplicate content entry for clients.
@@ -740,7 +740,7 @@ non-semantic: `<div role="generic">`
 <h2 id="motion" class="anchor-heading">Motion & Animation
  {% include Util/link_anchor anchor="motion" %} {% include Util/top %}</h2>
 
- ### What is Animation?
+### What is Animation?
     
 *   Videos
     
@@ -910,7 +910,7 @@ Items that would count as motion animation:
 
 <h2 id="forms" class="anchor-heading">Forms {% include Util/link_anchor anchor=forms %} {% include Util/top %}</h2>
 
- ### Icons as Labels
+### Icons as Labels
 
 *   Icons MAY be used as visual labels (without visual text) if the meaning of the icon is visually self-evident **and** if there is a programmatically associated semantic label available to assistive technologies.
     
